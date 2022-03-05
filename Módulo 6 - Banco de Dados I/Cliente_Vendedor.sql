@@ -137,3 +137,4 @@ SELECT * FROM produto;
 SELECT * FROM cliente;
 -- 5) Buscar todas as informações de vendedores;
 SELECT * FROM vendedor;
+
