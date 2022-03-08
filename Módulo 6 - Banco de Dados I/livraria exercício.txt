@@ -1,0 +1,123 @@
+Enunciado
+Informações:
+
+Você ficou encarregado(a) de trabalhar no Banco de Dados de um site que vai ser criado para uma Livraria.
+
+O responsável pelo projeto foi consultar o cliente (livraria) e, a partir dos requisitos que foram solicitados, ele criou um resumo das regras de negócios que você vai precisar ter em mente ao fazer a Modelagem do Banco de Dados.
+
+Regras de Negócios:
+
+Queremos coletar os dados pessoais de nossos clientes: CPF, nome, endereço, telefone e e-mail.
+
+Os livros que vendemos têm informações associadas a eles, como seu título, categoria, ISBN, ano de publicação, editora, bem como autor ou autores da obra.
+
+Nossos livros são fornecidos por editoras. Precisamos ter o nome de contato, o e-mail e, no máximo, dois telefones da editora.
+
+Não é possível ter o mesmo livro vindo de várias editoras. Cada livro é exclusivo de uma editora.
+
+Nossos clientes podem comprar um ou mais livros em um pedido de compra. Mas, antes que ele faça a compra, é preciso verificar se o livro está disponível em estoque para que a compra seja efetuada.
+
+Proposta:
+
+Com base nesses requisitos, crie a Modelagem de Dados Conceitual, Modelagem de Dados Lógica e Modelagem de Dados Física desse Banco de Dados e, em seguida, crie um script SQL da criação desse Banco de Dados no PostgreSQL.
+Importante:
+
+Utilize o drawio para criar as Modelagens de Dados;
+
+Salve o script SQL em um arquivo no formato script.sql;
+
+Faça um .zip dos arquivos (Modelagens de Dados e script SQL).
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Modelo conceitual
+
+clientes("id_cliente"[int], *cpf[varchar(11)], nome[varchar(20)], endereco[varchar(40)], telefone[varchar[9]], *email[varchar(30)])
+livros("id_livro"[int], titulo[varchar(40)], categoria[varchar(20)], *isbn[int], ano_publicacao[int], editora[varchar(20)], autor[varchar(20)])
+editora("id_editora"[int], nome_contato[varchar(20)], *email_editora[varchar(30)], *telefone_1[varchar(9)] NOT null, telefone_2[varchar(9)])
+estoque(livros_livraria[isbn, "id_livro"], quantidade[int])
+pedido(id_cliente[FK], )
+
+N livros tem 1 editora
+N clientes compram 1,N livros
+N clientes verificam disponibilidade em 1 estoque (da livraria) -> N clientes compram N livros
+
+Pergunta: Tenho uma PRIMARY KEY que representa a id_livro numa tabela livro e tenho uma tabela de pedidos, na qual pode ter vários livros. Posso um array de FOREIGN KEYS? Acho que não
+
+Alterar em modelo conceitual e lógico - livros(N) são verificados a disponibilidade em estoque(1)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Criar database para livraria
+CREATE DATABASE letscode_livraria
+
+-- livraria_cliente(id_cliente(PK), cpf, nome, endereco, telefone, email): Dados do cliente
+-- livraria_editora(id_editora(PK), nome_contato, telefone_1, telefone_2): Dados da editora
+-- livraria_estoque(id_consulta(PK), isbn, quantidade): Verificação do livro no estoque
+-- livraria_livro(id_livro(PK), isbn, titulo, categoria, ano_publicacao, editora, id_editora(FK), autor, id_consulta(FK)): Dados do livro(FK para editora e para consulta no estoque, se tiver livro, adiciona no array dos pedidos.
+-- *livraria_pedido(id_pedido(PK), id_cliente(FK), ARRAY(id_livro(FK))): Principal table, "adição ao carrinho" -- Array de FK?
+
+
+livro N:1 editora
+livro N:1 estoque
+pedido N:N cliente
+pedido 1:N livro
+
+
+
+CREATE DATABASE letscode_livraria;
+
+CREATE TABLE livraria_cliente(
+	id_cliente int NOT null,
+	cpf varchar(11) NOT null,
+	nome varchar
+	endereco
+	telefone
+	email
+);
+
+CREATE TABLE livraria_editora(
+	id_editora
+	nome_contato
+	telefone_1
+	telefone_2
+);
+
+CREATE TABLE livraria_estoque(
+	id_consulta
+	isbn
+	quantidade
+);
+
+CREATE TABLE livraria_livro(
+	id_livro
+	isbn
+	titulo
+	categoria
+	ano_publicacao
+	editora
+	id_editora
+	autor
+	id_consulta
+);
+
+-- carrinho é um array de id_livro, mas não está ligado como uma FOREIGN KEY
+CREATE TABLE livraria_pedido(
+	id_pedido
+	id_cliente
+	carrinho int ARRAY
+);
+
+
+
+Isso é possível? Não
+
+CREATE TABLE PK_TABLE_FOR_ARRAY (
+    ptest1 float8 PRIMARY KEY,
+    ptest2 text
+);
+CREATE TABLE FK_TABLE_FOR_ARRAY (
+    ftest1 int[],
+    FOREIGN KEY (EACH ELEMENT OF ftest1) REFERENCES PKTABLEFORARRAY,
+    ftest2 int
+);
+
