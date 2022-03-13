@@ -179,30 +179,53 @@ WHERE funcionario.nomefunc = 'Luciana S. Santos'; -- sem dependentes
 
 --4. Selecione o nome dos projetos que o empregado de nome ‘Frank T. Santos’ trabalha.
 
+SELECT funcionario.nomefunc, projeto.nomeproj FROM funcionario
+INNER JOIN projeto ON funcionario.id_depto = projeto.id_depto
+WHERE funcionario.nomefunc = 'Frank T. Santos';
 
 --5. Selecione o nome dos empregados que trabalham em projetos controlados pelo departamento de
 --nome ‘ Construção’.
 
+SELECT funcionario.nomefunc, departamento.nomedepto FROM funcionario
+INNER JOIN departamento ON funcionario.id_depto = departamento.id_depto
+WHERE nomedepto = 'Construção';
 
 --6. Selecione o nome dos empregados supervisionados pelo empregado de nome ‘Frank T. Santos’.
+-- departamento.id_gerente = funcionario.id_superv
+select * from funcionario;
 
+SELECT funcionario.nomefunc FROM funcionario
+INNER JOIN departamento ON departamento.id_gerente = funcionario.id_superv
+WHERE funcionario.id_superv = (SELECT funcionario.id_func FROM funcionario WHERE nomefunc = 'Frank T. Santos');
 
 --7. Selecione o nome e endereço dos empregados que não tem nenhum dependente.
 
+SELECT funcionario.nomefunc, funcionario.endereco FROM funcionario
+LEFT JOIN dependente ON dependente.id_func = funcionario.id_func
+WHERE dependente.id_dep IS null;
 
 --8. Selecione o nome dos empregados que trabalham no departamento de nome ‘Pesquisa’ ou que
 --trabalham no projeto de nome ‘N. Benefícios’.
+SELECT * FROM funcionario;
+SELECT * FROM departamento; -- Pesquisa ou
+SELECT * FROM projeto; -- N. Benefícios
 
+SELECT DISTINCT(funcionario.nomefunc) FROM funcionario 
+INNER JOIN departamento ON funcionario.id_depto = departamento.id_depto
+INNER JOIN projeto ON departamento.id_depto = projeto.id_depto
+WHERE projeto.nomeproj = 'N. Benefícios' OR departamento.nomedepto = 'Pesquisa';
 
 --9. Selecione o nome dos empregados que trabalham em algum projeto controlado pelo
 --departamento cujo gerente é o empregado de nome ‘Frank T. Santos’.
 
+--> Parece igual a pergunta 6.
 
 --10. Selecione o nome dos empregados que trabalham em todos os projetos controlados pelo
 --departamento cujo gerente é o empregado de nome ‘Frank T. Santos’.
 
+--> Não sei se faz sentido essa pergunta. Todos os funcionarios trabalham com um unico projeto.
 
----
+--- Exercício extra
 --11. Quais funcionarios tem dependentes?
 SELECT * FROM funcionario
 LEFT JOIN dependente ON funcionario.id_func = dependente.id_func;
