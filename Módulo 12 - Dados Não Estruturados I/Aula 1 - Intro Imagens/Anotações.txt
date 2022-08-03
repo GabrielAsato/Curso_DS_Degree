@@ -1,0 +1,50 @@
+Aula 96 -                                              
+01/08/2022 Matheus Pavani (FIAP)
+
+Problemas de case real
+
+Big data : Grande volumetria de dados (casa de bilhões, às vezes, com adições de dados de milhões)
+Antes, usamos pandas, mas com Big data, o pandas não dá conta. Usamos pyspark (paralelizável).
+
+Multi thead : Rodar processos em vários núcleos (CPU)
+
+
+Dados não estruturados
+
+Neste módulo vamos explorar algumas ferramentas para processamento de dados não estruturados. Em particular, trbalharemos com processamento de imagem e processamento de áudio. Veremos também como construir modelos de ML utilizando estes tipos de dados (e teremos até uma introdução prática ao uso de redes neurais).
+
+Processamento de imagens : Estrutura, representação, espaço de cores, transformações geométricas, filtros
+Processamento de audio : Sinal de audio, amostragem, quantização, propriedades, pré-processamento, transformadas de sinal
+Machine Learning : Utilização das ferramentas que já conhecemos para treinar modelos usando imagens e áudios
+Redes Neurais para imagens e audio : Um gostinho de redes neurais treinadas com imagens e áudios
+
+
+Processamento de sinais
+
+É uma sub-área de engenharia elétrica cujo o foco é analisar, modificar e sintetizar sinais como som, imagens, texto, etc.
+Técnicas de procesamento de sianis podem ser utilizadas para a melhoria de transmissão, eficiência de armazenamento, qualidade do sinal.
+
+Imagem : M linhas por N colunas (Matriz = MN (k bits))
+FOV = pixels/cm² (campo de visão)
+
+### pixel/size = FOV/matriz
+
+Bit depth = k bit -----> 2^k -----> 2^8 = 256 níveis de cinza (variando de 0 a 255 - gray scale)
+O pixel não pode ser definido por um tamanho em centímetro. Ele vai variar de tamanho de acordo com a quantidade de pixels por polegada (ppi). Se uma imagem tiver o tamanho de 1920 x 1080 pixels e uma resolução de 1000 pixels por centímetro, o tamanho real (em centímetro) será de 1,92 x 1,08 cm.
+
+
+
+Biblioteca para processamento de imagem
+!pip install opencv-python
+import cv2
+
+# Bibliotecas para serem usadas
+import matplotlib.pyplot as plt
+import numpy as np
+
+img = np.asarray()
+
+plt.imshow(img, cmpa='gray');
+
+# acesso de
+img
