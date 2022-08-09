@@ -1,0 +1,10 @@
+Referências
+[1] Documentação : https://www.tensorflow.org/api_docs/python/tf/keras/layers
+[2] Dense layer* : https://towardsdatascience.com/the-basic-building-block-of-neural-networks-a9b2e8f5c056
+[3] Conv2d(2D Convolutions)* : https://towardsdatascience.com/conv2d-to-finally-understand-what-happens-in-the-forward-pass-1bbaafb0b148
+[4] Conv2d(2D Convolutions) : https://towardsdatascience.com/no-kernels-filters-are-not-the-same-b230ec192ac9#:~:text=filters%20%3A%20Integer%2C%20the%20dimensionality%20of,output%20filters%20in%20the%20convolution).&text=Each%20filter%20would%20produce%20a,%2C%20W'%20%2C%20filters%20)%20.
+[5] MaxPool2D : https://paperswithcode.com/method/max-pooling
+[6] MaxPool2D* : https://www.tensorflow.org/api_docs/python/tf/keras/layers/MaxPool2D
+[7] Flatten : https://www.researchgate.net/figure/Methodology-A-convolutional-neural-network-CNN-was-trained-to-classify-handwritten_fig1_343547826
+[8] Flatten : https://www.tensorflow.org/api_docs/python/tf/keras/layers/Flatten
+[9] Flatten* : https://medium.com/@PK_KwanG/cnn-step-2-flattening-50ee0af42e3e
