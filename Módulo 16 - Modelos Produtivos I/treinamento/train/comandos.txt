@@ -1,0 +1,2 @@
+docker run -it -v "D:\\Aulas\\Ada\\814_mp\\treinamento\\train\\dados:/dados" --rm ada814_treino:1
+

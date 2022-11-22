@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  api:      # aula_03-api-1
+    build: .
+    ports: 
+      - "12345:5000"
+    volumes:
+      - .:/app  
+  redis:    # aula_03-redis-1
+    image: redis:alpine

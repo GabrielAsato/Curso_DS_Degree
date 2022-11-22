@@ -1,0 +1,47 @@
+pessoas
+{ 
+    "pessoa_id": 123,
+    "nome": "Erick",
+    "idade": 42,
+    "enderecos": [
+        {
+            "logradouro": "Rua das Couves, 123",
+            "bairro": "longe",
+            "cidade": "sao bernardo"
+        }
+    ],
+    "pedidos": [ 
+        1, 
+        4, 
+        12,
+        "36"
+    ]
+}
+
+pedidos
+[
+    {
+        "pedido_id": 1,
+        "itens_pedido": [
+            {
+                ...
+            },
+            {
+                ...
+            },
+        ],
+        "pessoa": 123
+    },
+    {
+        "pedido_id": 36,
+        "itens_pedido": [
+            {
+                ...
+            },
+            {
+                ...
+            },
+        ],
+        "pessoa": 123
+    }
+]
